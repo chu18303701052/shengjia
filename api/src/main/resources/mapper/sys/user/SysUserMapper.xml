@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.digov.api.repository.sys.user.SysUserRepository">
+
+    <select id="getSysUserResultList"
+            parameterType="com.digov.api.entity.param.sys.user.SysUserListParam"
+            resultType="com.digov.api.entity.result.sys.user.SysUserResult">
+        select
+                a1.id `id`
+                ,a1.real_name `realName`
+                ,a1.username `username`
+                ,a1.password `password`
+                ,a1.email `email`
+                ,a1.mobile `mobile`
+                ,a1.status `status`
+                ,a1.create_time `createTime`
+                ,a1.modify_time `modifyTime`
+        from sys_user a1
+        where a1.flag=0
+    </select>
+
+    <resultMap id="SysUserDetailResultMap" type="com.digov.api.entity.result.sys.user.SysUserDetailResult">
+        <id column="id" property="id"></id>
+        <result column="realName" property="realName"></result>
+        <result column="username" property="username"></result>
+        <result column="password" property="password"></result>
+        <result column="email" property="email"></result>
+        <result column="mobile" property="mobile"></result>
+        <result column="status" property="status"></result>
+    </resultMap>
+
+    <select id="getSysUserDetailResult"
+            parameterType="com.digov.api.entity.param.sys.user.SysUserIdParam"
+            resultMap="SysUserDetailResultMap">
+        select
+                a1.id `id`
+                ,a1.real_name `realName`
+                ,a1.username `username`
+                ,a1.password `password`
+                ,a1.email `email`
+                ,a1.mobile `mobile`
+                ,a1.status `status`
+        from sys_user a1
+        where a1.flag=0
+        and a1.id=#{id}
+    </select>
+
+    <select id="getSysUserIdResult"
+            parameterType="com.digov.api.entity.param.sys.user.SysUserIdParam"
+            resultType="com.digov.api.entity.result.sys.user.SysUserIdResult">
+        select
+                a1.id `id`
+                ,a1.real_name `realName`
+                ,a1.username `username`
+                ,a1.password `password`
+                ,a1.email `email`
+                ,a1.mobile `mobile`
+                ,a1.status `status`
+        from sys_user a1
+        where a1.flag=0
+        and a1.id=#{id}
+    </select>
+
+</mapper>

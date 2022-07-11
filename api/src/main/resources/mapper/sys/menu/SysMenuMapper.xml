@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.digov.api.repository.sys.menu.SysMenuRepository">
+
+    <select id="getSysMenuResultList"
+            parameterType="com.digov.api.entity.param.sys.menu.SysMenuListParam"
+            resultType="com.digov.api.entity.result.sys.menu.SysMenuResult">
+        select
+                a1.id `id`
+                ,a1.parent_id `parentId`
+                ,a1.name `name`
+                ,a1.url `url`
+                ,a1.perms `perms`
+                ,a1.type `type`
+                ,a1.icon `icon`
+                ,a1.order_num `orderNum`
+                ,a1.level `level`
+                ,a1.router_url `routerUrl`
+                ,a1.create_time `createTime`
+                ,a1.modify_time `modifyTime`
+        from sys_menu a1
+        where a1.flag=0
+    </select>
+
+    <resultMap id="SysMenuDetailResultMap" type="com.digov.api.entity.result.sys.menu.SysMenuDetailResult">
+        <id column="id" property="id"></id>
+        <result column="parentId" property="parentId"></result>
+        <result column="name" property="name"></result>
+        <result column="url" property="url"></result>
+        <result column="perms" property="perms"></result>
+        <result column="type" property="type"></result>
+        <result column="icon" property="icon"></result>
+        <result column="orderNum" property="orderNum"></result>
+        <result column="level" property="level"></result>
+        <result column="routerUrl" property="routerUrl"></result>
+    </resultMap>
+
+    <select id="getSysMenuDetailResult"
+            parameterType="com.digov.api.entity.param.sys.menu.SysMenuIdParam"
+            resultMap="SysMenuDetailResultMap">
+        select
+                a1.id `id`
+                ,a1.parent_id `parentId`
+                ,a1.name `name`
+                ,a1.url `url`
+                ,a1.perms `perms`
+                ,a1.type `type`
+                ,a1.icon `icon`
+                ,a1.order_num `orderNum`
+                ,a1.level `level`
+                ,a1.router_url `routerUrl`
+        from sys_menu a1
+        where a1.flag=0
+        and a1.id=#{id}
+    </select>
+
+    <select id="getSysMenuIdResult"
+            parameterType="com.digov.api.entity.param.sys.menu.SysMenuIdParam"
+            resultType="com.digov.api.entity.result.sys.menu.SysMenuIdResult">
+        select
+                a1.id `id`
+                ,a1.parent_id `parentId`
+                ,a1.name `name`
+                ,a1.url `url`
+                ,a1.perms `perms`
+                ,a1.type `type`
+                ,a1.icon `icon`
+                ,a1.order_num `orderNum`
+                ,a1.level `level`
+                ,a1.router_url `routerUrl`
+        from sys_menu a1
+        where a1.flag=0
+        and a1.id=#{id}
+    </select>
+
+</mapper>

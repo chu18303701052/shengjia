@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.digov.api.repository.sys.user.role.SysUserRoleRepository">
+
+    <select id="getSysUserRoleResultList"
+            parameterType="com.digov.api.entity.param.sys.user.role.SysUserRoleListParam"
+            resultType="com.digov.api.entity.result.sys.user.role.SysUserRoleResult">
+        select
+                a1.id `id`
+                ,a1.user_id `userId`
+                ,a1.role_id `roleId`
+        from sys_user_role a1
+        where a1.flag=0
+    </select>
+
+    <resultMap id="SysUserRoleDetailResultMap" type="com.digov.api.entity.result.sys.user.role.SysUserRoleDetailResult">
+        <id column="id" property="id"></id>
+        <result column="userId" property="userId"></result>
+        <result column="roleId" property="roleId"></result>
+    </resultMap>
+
+    <select id="getSysUserRoleDetailResult"
+            parameterType="com.digov.api.entity.param.sys.user.role.SysUserRoleIdParam"
+            resultMap="SysUserRoleDetailResultMap">
+        select
+                a1.id `id`
+                ,a1.user_id `userId`
+                ,a1.role_id `roleId`
+        from sys_user_role a1
+        where a1.flag=0
+        and a1.id=#{id}
+    </select>
+
+    <select id="getSysUserRoleIdResult"
+            parameterType="com.digov.api.entity.param.sys.user.role.SysUserRoleIdParam"
+            resultType="com.digov.api.entity.result.sys.user.role.SysUserRoleIdResult">
+        select
+                a1.id `id`
+                ,a1.user_id `userId`
+                ,a1.role_id `roleId`
+        from sys_user_role a1
+        where a1.flag=0
+        and a1.id=#{id}
+    </select>
+
+    <select id="getRoleNameList"
+            parameterType="java.lang.Long"
+            resultType="java.lang.String">
+        select
+            a2.role_name
+        from sys_user_role a1
+        left join sys_role a2 on a1.role_id = a2.id
+        where a1.flag=0
+          and a1.user_id=#{sysUserId}
+    </select>
+</mapper>

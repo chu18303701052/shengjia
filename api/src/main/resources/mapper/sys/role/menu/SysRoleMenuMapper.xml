@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.digov.api.repository.sys.role.menu.SysRoleMenuRepository">
+
+    <select id="getSysRoleMenuResultList"
+            parameterType="com.digov.api.entity.param.sys.role.menu.SysRoleMenuListParam"
+            resultType="com.digov.api.entity.result.sys.role.menu.SysRoleMenuResult">
+        select a1.id      `id`
+             , a1.role_id `roleId`
+             , a1.menu_id `menuId`
+        from sys_role_menu a1
+        where a1.flag = 0
+    </select>
+
+    <resultMap id="SysRoleMenuDetailResultMap" type="com.digov.api.entity.result.sys.role.menu.SysRoleMenuDetailResult">
+        <id column="id" property="id"></id>
+        <result column="roleId" property="roleId"></result>
+        <result column="menuId" property="menuId"></result>
+    </resultMap>
+
+    <select id="getSysRoleMenuDetailResult"
+            parameterType="com.digov.api.entity.param.sys.role.menu.SysRoleMenuIdParam"
+            resultMap="SysRoleMenuDetailResultMap">
+        select a1.id      `id`
+             , a1.role_id `roleId`
+             , a1.menu_id `menuId`
+        from sys_role_menu a1
+        where a1.flag = 0
+          and a1.id = #{id}
+    </select>
+
+    <select id="getSysRoleMenuIdResult"
+            parameterType="com.digov.api.entity.param.sys.role.menu.SysRoleMenuIdParam"
+            resultType="com.digov.api.entity.result.sys.role.menu.SysRoleMenuIdResult">
+        select a1.id      `id`
+             , a1.role_id `roleId`
+             , a1.menu_id `menuId`
+        from sys_role_menu a1
+        where a1.flag = 0
+          and a1.id = #{id}
+    </select>
+
+    <select id="getPermissionUrlList"
+            parameterType="java.lang.Long"
+            resultType="java.lang.String">
+        select a3.url
+        from sys_user_role a1
+        left join sys_role_menu a2 on a1.role_id = a2.role_id
+        left join sys_menu a3 on a2.menu_id = a3.id
+        where a1.flag = 0
+          and a1.user_id = #{sysUserId}
+    </select>
+</mapper>

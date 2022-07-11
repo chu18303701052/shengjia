@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.digov.api.repository.sys.role.SysRoleRepository">
+
+    <select id="getSysRoleResultList"
+            parameterType="com.digov.api.entity.param.sys.role.SysRoleListParam"
+            resultType="com.digov.api.entity.result.sys.role.SysRoleResult">
+        select
+                a1.id `id`
+                ,a1.role_name `roleName`
+                ,a1.remark `remark`
+                ,a1.create_time `createTime`
+                ,a1.modify_time `modifyTime`
+        from sys_role a1
+        where a1.flag=0
+    </select>
+
+    <resultMap id="SysRoleDetailResultMap" type="com.digov.api.entity.result.sys.role.SysRoleDetailResult">
+        <id column="id" property="id"></id>
+        <result column="roleName" property="roleName"></result>
+        <result column="remark" property="remark"></result>
+    </resultMap>
+
+    <select id="getSysRoleDetailResult"
+            parameterType="com.digov.api.entity.param.sys.role.SysRoleIdParam"
+            resultMap="SysRoleDetailResultMap">
+        select
+                a1.id `id`
+                ,a1.role_name `roleName`
+                ,a1.remark `remark`
+        from sys_role a1
+        where a1.flag=0
+        and a1.id=#{id}
+    </select>
+
+    <select id="getSysRoleIdResult"
+            parameterType="com.digov.api.entity.param.sys.role.SysRoleIdParam"
+            resultType="com.digov.api.entity.result.sys.role.SysRoleIdResult">
+        select
+                a1.id `id`
+                ,a1.role_name `roleName`
+                ,a1.remark `remark`
+        from sys_role a1
+        where a1.flag=0
+        and a1.id=#{id}
+    </select>
+
+</mapper>

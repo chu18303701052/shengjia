@@ -1,0 +1,41 @@
+HELP.md
+target/
+public/
+*/target
+.mvn/wrapper/maven-wrapper.jar
+**/src/test/**
+
+### STS ###
+.apt_generated
+.classpath
+.factorypathW
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+/bin/
+
+### VS Code ###
+.vscode/
+
+mvnw
+mvnw.cmd
+*/mvnw
+*/mvnw.cmd
+*/.mvn
+.mvn
+.idea
+digov_api.iml
