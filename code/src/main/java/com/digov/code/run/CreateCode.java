@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class CreateCode {
     public static void main(String[] args) {
         ArrayList<String> tables = new ArrayList<>();
-        tables.add("pers_sys_user_additional");
+        tables.add("first");
 
         for (String table : tables) {
             CustomGenerator customGenerator = new CustomGenerator(table, "common");
