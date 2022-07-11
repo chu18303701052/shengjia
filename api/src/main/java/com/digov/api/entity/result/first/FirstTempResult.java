@@ -1,0 +1,23 @@
+package com.digov.api.entity.result.first;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Setter;
+import lombok.Getter;
+
+/**
+ *  新增参数
+ *
+ * @author system_code
+ * @since 2022-07-11
+ */
+@Setter
+@Getter
+@ApiModel(value = "FirstTempResult", description = "参数")
+public class FirstTempResult {
+    @ApiModelProperty(value = "id", example = "id" )
+    private Integer id;
+    @ApiModelProperty(value = "名称", example = "名称" )
+    private String name;
+
+}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.digov.api.repository.first.FirstRepository">
+
+    <select id="getFirstResultList"
+            parameterType="com.digov.api.entity.param.first.FirstListParam"
+            resultType="com.digov.api.entity.result.first.FirstResult">
+        select
+                a1.id `id`
+                ,a1.name `name`
+        from first a1
+        where a1.flag=0
+    </select>
+
+    <resultMap id="FirstDetailResultMap" type="com.digov.api.entity.result.first.FirstDetailResult">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+    </resultMap>
+
+    <select id="getFirstDetailResult"
+            parameterType="com.digov.api.entity.param.first.FirstIdParam"
+            resultMap="FirstDetailResultMap">
+        select
+                a1.id `id`
+                ,a1.name `name`
+        from first a1
+        where a1.flag=0
+        and a1.id=#{id}
+    </select>
+
+    <select id="getFirstIdResult"
+            parameterType="com.digov.api.entity.param.first.FirstIdParam"
+            resultType="com.digov.api.entity.result.first.FirstIdResult">
+        select
+                a1.id `id`
+                ,a1.name `name`
+        from first a1
+        where a1.flag=0
+        and a1.id=#{id}
+    </select>
+
+</mapper>
