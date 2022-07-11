@@ -3,7 +3,7 @@ git add .
 git commit -m 'add code'
 git pull
 git push
-git checkout prod
+git checkout main
 git pull
 sleep 1
 git merge dev
