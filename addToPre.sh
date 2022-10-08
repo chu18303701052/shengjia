@@ -6,7 +6,9 @@ git push
 git checkout pre
 git pull
 sleep 1
-git merge dev
+git merge main
 git pull
 git push
-git checkout dev
+git checkout main
+
+
